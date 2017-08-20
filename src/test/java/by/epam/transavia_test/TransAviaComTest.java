@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 import by.epam.transavia_test.page.TransAviaFirstPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
 
-public class TransAviaComTest1 extends TestBase{
+public class TransAviaComTest extends TestBase{
 	TransAviaFirstPage transAviaFirstPage = null;
 	TransAviaHomePage transAviaHomePage = null;
 	
@@ -35,5 +35,6 @@ public class TransAviaComTest1 extends TestBase{
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
 		transAviaHomePage.chooseFrom();
 		transAviaHomePage.chooseToCountry();
+		transAviaHomePage.chooseDepartDate();
 	}
 }

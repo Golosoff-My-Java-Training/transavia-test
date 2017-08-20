@@ -24,27 +24,37 @@ public class TransAviaHomePage {
 		 * Select(driver.findElements(fromField).get(0));
 		 * selectFrom.selectByVisibleText("Edinburgh, United Kingdom");
 		 */
+		mySleep(5000);
 		driver.findElement(fromField).click();
 		driver.findElement(fromEdinburg).click();
 
-		myWait();
 	}
 
+	
 	public void chooseToCountry() {
 		driver.findElement(toField).click();
 		driver.findElement(toParisOrly).click();
-		driver.findElement(departCalendar).click();
-		driver.findElement(firstActiveDepartData).click();
-		myWait();
 	}
 
-	public void myWait() {
+	
+
+	public void chooseDepartDate() {
+		mySleep(5000);
+		driver.findElement(departCalendar).click();
+		driver.findElement(firstActiveDepartData).click();
+		mySleep(2000);
+	
+	}
+	
+	private void mySleep(int millisForWait) {
 		try {
-			Thread.sleep(2000);
+			
+			Thread.sleep(millisForWait);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 
 }

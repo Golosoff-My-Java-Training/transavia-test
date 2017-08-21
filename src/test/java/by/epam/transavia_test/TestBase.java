@@ -12,7 +12,7 @@ public class TestBase {
 	
 	public static final String TRANSAVIA_COM_URL = "https://www.transavia.com";
 	
-	protected WebDriver driver;
+	protected static WebDriver driver;
 	@BeforeTest
 	public void setup(){
 		

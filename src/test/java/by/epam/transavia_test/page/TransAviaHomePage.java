@@ -2,29 +2,31 @@ package by.epam.transavia_test.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class TransAviaHomePage {
+public class TransAviaHomePage extends TransAviaPage{
 
 	private WebDriver driver;
 	By fromField = By.xpath(".//input[@id = 'routeSelection_DepartureStation-input']");
 	By fromEdinburg = By.xpath(".//li[text() = 'Edinburgh, United Kingdom']");
 	By toField = By.xpath(".//input[@id = 'routeSelection_ArrivalStation-input']");
 	By toParisOrly = By.xpath(".//li[text() = 'Paris (Orly South), France']");
-	By departCalendar = By.xpath(".//span[class = 'datepicker-trigger icon-font icon-calendar'][1]");
-	By firstActiveDepartData = By.xpath(".//td[data-selectable-day = ''][1]");
-
+	By departCalendar = By.xpath(".//span[@class = 'datepicker-trigger icon-font icon-calendar']");
+	//By firstActiveDepartData = By.xpath("(.//td[@data-selectable-day = ''])[1]");
+	//By firstActiveDepartData = By.xpath(".//*[@id='ui-datepicker-div']/table/tbody/tr[4]/td[2]/a");
+	By currentDayData = By.xpath(".//td[@class = 'ui-datepicker-current-day']/a");
+	By returnOnCheckBox = By.id("dateSelection_IsReturnFlight");
+	By whoWillBeTravelingField = By.id("booking-passengers-input");
+	By searchButton = By.xpath(".//button[@type = 'submit']");
+	
 	public TransAviaHomePage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void chooseFrom() {
-		/*
-		 * Select selectFrom = new
-		 * Select(driver.findElements(fromField).get(0));
-		 * selectFrom.selectByVisibleText("Edinburgh, United Kingdom");
-		 */
-		mySleep(5000);
+
 		driver.findElement(fromField).click();
 		driver.findElement(fromEdinburg).click();
 
@@ -33,27 +35,38 @@ public class TransAviaHomePage {
 	
 	public void chooseToCountry() {
 		driver.findElement(toField).click();
+		mySleep(2000);
 		driver.findElement(toParisOrly).click();
 	}
 
 	
 
 	public void chooseDepartDate() {
-		mySleep(5000);
+//		mySleep(5000);
+		
 		driver.findElement(departCalendar).click();
-		driver.findElement(firstActiveDepartData).click();
-		mySleep(2000);
-	
+//		mySleep(5000);
+		Actions myAction = new Actions(driver);
+		myAction.click(driver.findElement(currentDayData)).build().perform();
 	}
 	
-	private void mySleep(int millisForWait) {
-		try {
-			
-			Thread.sleep(millisForWait);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+
+	public void uncheckReturnOn() {
+		driver.findElement(returnOnCheckBox).click();
+		mySleep(2000);
+		
+	}
+
+	public void chooseOneAdult() {
+		System.out.println(driver.findElement(whoWillBeTravelingField).getText());
+		
+	}
+
+	public TransAviaBookAFlightPage pressSearchButton() {
+		Actions myAction = new Actions(driver);
+		myAction.click(driver.findElement(searchButton)).build().perform();
+		return new TransAviaBookAFlightPage(driver);
 	}
 
 

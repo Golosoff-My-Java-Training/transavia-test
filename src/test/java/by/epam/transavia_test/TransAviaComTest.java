@@ -20,12 +20,14 @@ package by.epam.transavia_test;
 
 import org.testng.annotations.Test;
 
+import by.epam.transavia_test.page.TransAviaBookAFlightPage;
 import by.epam.transavia_test.page.TransAviaFirstPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
 
 public class TransAviaComTest extends TestBase{
 	TransAviaFirstPage transAviaFirstPage = null;
 	TransAviaHomePage transAviaHomePage = null;
+	TransAviaBookAFlightPage transAviaBookAFlightPage = null;
 	
 	protected String selectYourCountry = "United Kingdom";
 	
@@ -36,5 +38,10 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseFrom();
 		transAviaHomePage.chooseToCountry();
 		transAviaHomePage.chooseDepartDate();
+		transAviaHomePage.uncheckReturnOn();
+		transAviaHomePage.chooseOneAdult();
+		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
+		transAviaBookAFlightPage.checkForFlightAvailable();
+		
 	}
 }

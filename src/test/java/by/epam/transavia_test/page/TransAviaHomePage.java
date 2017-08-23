@@ -19,7 +19,7 @@ public class TransAviaHomePage extends TransAviaPage{
 	By currentDayData = By.xpath(".//td[@class = 'ui-datepicker-current-day']/a");
 	By returnOnCheckBox = By.id("dateSelection_IsReturnFlight");
 	By whoWillBeTravelingField = By.id("booking-passengers-input");
-	By searchButton = By.xpath(".//button[@type = 'submit']");
+	By searchButton = By.xpath("(.//button[@class='button button-primary'])[2]");
 	
 	public TransAviaHomePage(WebDriver driver) {
 		this.driver = driver;

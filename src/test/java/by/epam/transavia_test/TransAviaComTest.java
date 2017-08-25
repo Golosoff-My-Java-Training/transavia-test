@@ -28,8 +28,12 @@ public class TransAviaComTest extends TestBase{
 	TransAviaBookAFlightPage transAviaBookAFlightPage = null;
 	
 	protected String selectYourCountry = "United Kingdom";
+	protected String selectBarcelona = "Barcelona";
+	protected String selectParis = "Paris";
+	protected byte adultsNumber = 2;
+	protected byte childrenNumber = 1;
 	
-	@Test
+	@Test(enabled = false)
 	public void wereDoYouWantToGoTest(){
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
@@ -40,6 +44,19 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseOneAdult();
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
 		transAviaBookAFlightPage.checkForFlightAvailable();
+		
+	}
+	
+	@Test
+	public void checkForTotal(){
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transAviaHomePage.chooseFrom(selectBarcelona);
+		transAviaHomePage.chooseToCountry(selectParis);
+		transAviaHomePage.chooseWhoWillBeTraveling(adultsNumber, childrenNumber);
+		
+		
+		
 		
 	}
 }

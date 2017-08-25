@@ -4,7 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 
@@ -13,7 +15,7 @@ public class TestBase {
 	public static final String TRANSAVIA_COM_URL = "https://www.transavia.com";
 	
 	protected static WebDriver driver;
-	@BeforeTest
+	@BeforeMethod
 	public void setup(){
 		
 //		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
@@ -24,7 +26,7 @@ public class TestBase {
 				
 	}
 
-	@AfterTest
+	@AfterMethod
 	public void close(){
 		driver.close();
 	}

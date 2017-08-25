@@ -54,8 +54,8 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseFrom(selectBarcelona);
 		transAviaHomePage.chooseToCountry(selectParis);
 		transAviaHomePage.chooseWhoWillBeTraveling(adultsNumber, childrenNumber);
-		
-		
+		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
+		transAviaBookAFlightPage.selectFirstAvailableFlight();
 		
 		
 	}

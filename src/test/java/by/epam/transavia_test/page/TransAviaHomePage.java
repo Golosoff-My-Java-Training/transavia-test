@@ -1,15 +1,21 @@
 package by.epam.transavia_test.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TransAviaHomePage extends TransAviaPage{
 
 	private WebDriver driver;
 	By fromField = By.xpath(".//input[@id = 'routeSelection_DepartureStation-input']");
+	By fromInput = By.xpath(".//input[@id = 'routeSelection_DepartureStation-input']");
 	By fromEdinburg = By.xpath(".//li[text() = 'Edinburgh, United Kingdom']");
 	By toField = By.xpath(".//input[@id = 'routeSelection_ArrivalStation-input']");
 	By toParisOrly = By.xpath(".//li[text() = 'Paris (Orly South), France']");
@@ -19,7 +25,12 @@ public class TransAviaHomePage extends TransAviaPage{
 	By currentDayData = By.xpath(".//td[@class = 'ui-datepicker-current-day']/a");
 	By returnOnCheckBox = By.id("dateSelection_IsReturnFlight");
 	By whoWillBeTravelingField = By.id("booking-passengers-input");
-	By searchButton = By.xpath(".//button[@type = 'submit']");
+	By searchButton = By.xpath("(.//button[@class='button button-primary'])[2]");
+	By feedbackBar = By.xpath(".//div[@class='usabilla_live_button_container']");
+	By whoWillBeTraveling = By.id("booking-passengers-input");
+	By whoWillBeTravelingAdultsPlus = By.xpath(".//div[@class = 'selectfield adults']/div/div/div/div/button[@class = 'button button-secondary increase']");
+	By whoWillBeTravelingChildenPlus = By.xpath(".//div[@class = 'selectfield children']/div/div/div/div/button[@class = 'button button-secondary increase']");
+	By whoWillBeTravelingSaveButton = By.xpath(".//button[text() = 'Save']");
 	
 	public TransAviaHomePage(WebDriver driver) {
 		this.driver = driver;
@@ -31,15 +42,35 @@ public class TransAviaHomePage extends TransAviaPage{
 		driver.findElement(fromEdinburg).click();
 
 	}
+	
+	public void chooseFrom(String selectLondon) {
+		driver.findElement(fromField).click();
+		driver.findElement(fromField).sendKeys(selectLondon);
+		driver.findElement(fromField).sendKeys(Keys.ARROW_DOWN);
+		driver.findElement(fromField).sendKeys(Keys.ENTER);
+		
+		
+	}
 
 	
 	public void chooseToCountry() {
+		WebDriverWait myWait = new WebDriverWait(driver, 60);
+		myWait.until(ExpectedConditions.elementToBeClickable(feedbackBar));
 		driver.findElement(toField).click();
 		mySleep(2000);
 		driver.findElement(toParisOrly).click();
 	}
 
-	
+	public void chooseToCountry(String selectParis) {
+		WebDriverWait myWait = new WebDriverWait(driver, 60);
+		myWait.until(ExpectedConditions.elementToBeClickable(feedbackBar));
+		driver.findElement(toField).click();
+		mySleep(2000);
+		driver.findElement(toField).sendKeys(selectParis);
+		driver.findElement(toField).sendKeys(Keys.ARROW_DOWN);
+		driver.findElement(toField).sendKeys(Keys.ENTER);
+		
+	}
 
 	public void chooseDepartDate() {
 //		mySleep(5000);
@@ -64,10 +95,23 @@ public class TransAviaHomePage extends TransAviaPage{
 	}
 
 	public TransAviaBookAFlightPage pressSearchButton() {
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(searchButton));
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(searchButton)).build().perform();
 		return new TransAviaBookAFlightPage(driver);
 	}
+
+	public void chooseWhoWillBeTraveling(byte adultsNumber, byte childrenNumber) {
+		driver.findElement(whoWillBeTraveling).click();
+		driver.findElement(whoWillBeTravelingAdultsPlus).click();
+		driver.findElement(whoWillBeTravelingChildenPlus).click();
+		driver.findElement(whoWillBeTravelingSaveButton).click();
+		mySleep(5000);
+	}
+
+
+
+
 
 
 }

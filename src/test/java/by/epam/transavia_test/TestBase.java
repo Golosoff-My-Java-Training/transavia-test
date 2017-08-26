@@ -26,9 +26,9 @@ public class TestBase {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(TRANSAVIA_COM_URL);
-		WebElement html = driver.findElement(By.tagName("html"));
+/*		WebElement html = driver.findElement(By.tagName("body"));
 		html.sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));
-		html.sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));
+		html.sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));*/
 				
 	}
 

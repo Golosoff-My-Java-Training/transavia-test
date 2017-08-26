@@ -17,10 +17,11 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 
 	public TransAviaBookAFlightPage(WebDriver driver) {
 		this.driver = driver;
+//		mySleep(15000);
 	}
 
 	public void checkForFlightAvailable() {
-		mySleep(15000);
+		
 		Assert.assertTrue(driver.findElements(flightAvailBeads).size()>0);
 		
 		
@@ -28,7 +29,7 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 	}
 
 	public void selectFirstAvailableFlight() {
-		mySleep(10000);
+		mySleep(15000);
 	//	driver.findElement(firstAvailFlightTile).click();
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(firstAvailFlightTile)).build().perform();

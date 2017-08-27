@@ -46,6 +46,7 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseOneAdult();
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
 		transAviaBookAFlightPage.checkForFlightAvailable();
+		transAviaBookAFlightPage.pressNextButton();
 		
 	}
 	

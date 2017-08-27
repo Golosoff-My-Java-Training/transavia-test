@@ -44,6 +44,9 @@ public class TransAviaHomePage extends TransAviaPage{
 	}
 	
 	public void chooseFrom(String selectLondon) {
+		mySleep(5000);
+		WebDriverWait myWait = new WebDriverWait(driver, 60);
+		myWait.until(ExpectedConditions.elementToBeClickable(searchButton));
 		driver.findElement(fromField).click();
 		driver.findElement(fromField).sendKeys(selectLondon);
 		driver.findElement(fromField).sendKeys(Keys.ARROW_DOWN);
@@ -62,10 +65,11 @@ public class TransAviaHomePage extends TransAviaPage{
 	}
 
 	public void chooseToCountry(String selectParis) {
+		
 		WebDriverWait myWait = new WebDriverWait(driver, 60);
 		myWait.until(ExpectedConditions.elementToBeClickable(feedbackBar));
 		driver.findElement(toField).click();
-		mySleep(2000);
+		
 		driver.findElement(toField).sendKeys(selectParis);
 		driver.findElement(toField).sendKeys(Keys.ARROW_DOWN);
 		driver.findElement(toField).sendKeys(Keys.ENTER);

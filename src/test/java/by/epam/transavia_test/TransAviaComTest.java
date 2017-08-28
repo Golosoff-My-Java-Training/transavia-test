@@ -58,7 +58,8 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseToCountry(selectParis);
 		transAviaHomePage.chooseWhoWillBeTraveling(adultsNumber, childrenNumber);
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
-		transAviaBookAFlightPage.selectFirstAvailableFlight();
+		transAviaBookAFlightPage.selectFirstOutboundAvailableFlight();
+		transAviaBookAFlightPage.selectFirstInboundAvailableFlight();
 		transAviaBookAFlightPage.pressNextButton();
 		
 		

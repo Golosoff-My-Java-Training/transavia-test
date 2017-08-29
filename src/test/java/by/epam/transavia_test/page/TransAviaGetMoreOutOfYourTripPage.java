@@ -12,7 +12,9 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 	private WebDriver driver;
 	By plusColumn = By.xpath(".//th[@data-column-number = '2']");
 	By plusColumnSelectedButton = By.xpath("(.//div[@class = 'panel_section-button-container']/button[@value = 'B'])[1]");
-
+	By totalAmountEuro = By.xpath(".//div[@class = 'grand-total__price-container']/div/div[@class = 'back']");
+	By totalAmountCent = By.xpath(".//div[@class = 'grand-total__price-container']/div/div[@class = 'back']/span");
+	
 	public TransAviaGetMoreOutOfYourTripPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -28,6 +30,12 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 		Actions myAction1 = new Actions(driver);
 		myAction1.click(driver.findElement(plusColumnSelectedButton)).build().perform();
 		mySleep(15000);
+	}
+
+	public void totalCheck() {
+		System.out.println("Total amount " + driver.findElement(totalAmountEuro).getText());
+		System.out.println("Total amount " + driver.findElement(totalAmountCent).getText());
+		
 	}
 
 }

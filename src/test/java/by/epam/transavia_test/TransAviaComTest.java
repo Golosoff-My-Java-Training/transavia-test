@@ -64,6 +64,7 @@ public class TransAviaComTest extends TestBase{
 		transAviaBookAFlightPage.selectFirstInboundAvailableFlight();
 		transAviaGetMoreOutOfYourTripPage = transAviaBookAFlightPage.pressNextButton();
 		transAviaGetMoreOutOfYourTripPage.plusColumnClick();
+		transAviaGetMoreOutOfYourTripPage.totalCheck();
 		
 		
 		

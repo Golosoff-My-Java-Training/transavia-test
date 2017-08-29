@@ -48,7 +48,9 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 		//mySleep(5000);
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(selectOutboundButton));
 		System.out.println("жмем на (.//span[text() = 'Select'])[1]");
-		driver.findElement(selectOutboundButton).click();
+//		driver.findElement(selectOutboundButton).click();
+		Actions myAction1 = new Actions(driver);
+		myAction1.click(driver.findElement(selectOutboundButton)).build().perform();
 		System.out.println("pressed  selectedMessage (.//span[text() = 'Select'])[1]");
 		System.out.println("waiting for selectedMessage");
 		WebDriverWait myWait1 = new WebDriverWait(driver, 20);

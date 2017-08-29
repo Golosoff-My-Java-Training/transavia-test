@@ -110,7 +110,7 @@ public class TransAviaHomePage extends TransAviaPage{
 		driver.findElement(whoWillBeTravelingAdultsPlus).click();
 		driver.findElement(whoWillBeTravelingChildenPlus).click();
 		driver.findElement(whoWillBeTravelingSaveButton).click();
-		mySleep(5000);
+		//mySleep(5000);
 	}
 
 

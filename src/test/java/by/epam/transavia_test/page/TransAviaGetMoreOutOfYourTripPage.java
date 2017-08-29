@@ -24,12 +24,12 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 		myWait.until(ExpectedConditions.elementToBeClickable(plusColumn));
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(plusColumn)).build().perform();
-		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(plusColumnSelectedButton));
+/*		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(plusColumnSelectedButton));
 		WebDriverWait myWait1 = new WebDriverWait(driver, 20);
 		myWait1.until(ExpectedConditions.elementToBeClickable(plusColumnSelectedButton));
 		Actions myAction1 = new Actions(driver);
 		myAction1.click(driver.findElement(plusColumnSelectedButton)).build().perform();
-		mySleep(15000);
+		mySleep(15000);*/
 	}
 
 	public void totalCheck() {

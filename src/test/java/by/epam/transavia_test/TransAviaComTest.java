@@ -22,12 +22,14 @@ import org.testng.annotations.Test;
 
 import by.epam.transavia_test.page.TransAviaBookAFlightPage;
 import by.epam.transavia_test.page.TransAviaFirstPage;
+import by.epam.transavia_test.page.TransAviaGetMoreOutOfYourTripPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
 
 public class TransAviaComTest extends TestBase{
 	TransAviaFirstPage transAviaFirstPage = null;
 	TransAviaHomePage transAviaHomePage = null;
 	TransAviaBookAFlightPage transAviaBookAFlightPage = null;
+	TransAviaGetMoreOutOfYourTripPage transAviaGetMoreOutOfYourTripPage = null;
 	
 	protected String selectYourCountry = "United Kingdom";
 	protected String selectBarcelona = "Barcelona";
@@ -60,7 +62,9 @@ public class TransAviaComTest extends TestBase{
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
 		transAviaBookAFlightPage.selectFirstOutboundAvailableFlight();
 		transAviaBookAFlightPage.selectFirstInboundAvailableFlight();
-		transAviaBookAFlightPage.pressNextButton();
+		transAviaGetMoreOutOfYourTripPage = transAviaBookAFlightPage.pressNextButton();
+		transAviaGetMoreOutOfYourTripPage.plusColumnClick();
+		
 		
 		
 	}

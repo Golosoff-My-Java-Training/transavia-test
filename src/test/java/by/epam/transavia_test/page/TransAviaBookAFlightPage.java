@@ -37,15 +37,20 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 	}
 
 	public void selectFirstOutboundAvailableFlight() {
+		/*Wait myWait2 = new WebDriverWait(driver, 20);
+		myWait2.until(ExpectedConditions.elementToBeClickable(firstAvailOutboundFlightTile));*/
+		mySleep(5000);
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(firstAvailOutboundFlightTile));
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(firstAvailOutboundFlightTile)).build().perform();
 		Wait myWait = new WebDriverWait(driver, 20);
 		myWait.until(ExpectedConditions.elementToBeClickable(selectOutboundButton));
-		mySleep(5000);
+		//mySleep(5000);
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(selectOutboundButton));
 		System.out.println("жмем на (.//span[text() = 'Select'])[1]");
 		driver.findElement(selectOutboundButton).click();
-		System.out.println("нажали на (.//span[text() = 'Select'])[1]");
-		System.out.println("ждем сообщения о появлении selectedMessage");
+		System.out.println("pressed  selectedMessage (.//span[text() = 'Select'])[1]");
+		System.out.println("waiting for selectedMessage");
 		WebDriverWait myWait1 = new WebDriverWait(driver, 20);
 		myWait1.until(ExpectedConditions.visibilityOfElementLocated(selectedOutboundMessage));
 	}
@@ -65,7 +70,7 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 		myWait1.until(ExpectedConditions.visibilityOfElementLocated(selectedInboundMessage));
 	}
 
-	public void pressNextButton() {
+	public TransAviaGetMoreOutOfYourTripPage pressNextButton() {
 //		driver.findElement(nextButton).click();
 		mySleep(3000);
 		System.out.println("waiting  clickable nextButton");
@@ -75,7 +80,8 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(nextButton)).build().perform();
 		System.out.println("clicked nextButton");
-		mySleep(15000);
+		return new TransAviaGetMoreOutOfYourTripPage(driver);
+//		mySleep(15000);
 	}
 
 }

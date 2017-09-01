@@ -12,4 +12,10 @@ public class TransAviaBookingOverviewPage extends TransAviaPage{
 
 	By arrivalTime = By.xpath("(.//p[@class = 'flight-info_value']/em/time)[2]");
 
+	public void checkArrivalTime() {
+		mySleep(15000);
+		System.out.println("Arrival time is: " + driver.findElement(arrivalTime).getText());
+		
+	}
+
 }

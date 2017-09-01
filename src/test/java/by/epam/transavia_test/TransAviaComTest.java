@@ -85,6 +85,7 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
 		transAviaLoginPage = transAviaHomePage.goesToMyBooking();
 		transAviaBookingOverviewPage = transAviaLoginPage.login(bookingNumber, lastName, flightDate);
+		transAviaBookingOverviewPage.checkArrivalTime();
 		
 	}
 	

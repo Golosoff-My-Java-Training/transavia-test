@@ -14,6 +14,7 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 	By plusColumnSelectedButton = By.xpath("(.//div[@class = 'panel_section-button-container']/button[@value = 'B'])[1]");
 	By totalAmountEuro = By.xpath(".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']");
 	By totalAmountCent = By.xpath(".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']/span");
+	By feedbackBar = By.xpath(".//div[@class='usabilla_live_button_container']");
 	
 	public TransAviaGetMoreOutOfYourTripPage(WebDriver driver) {
 		this.driver = driver;
@@ -22,6 +23,8 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 	public void plusColumnClick() {
 		WebDriverWait myWait = new WebDriverWait(driver, 20);
 		myWait.until(ExpectedConditions.elementToBeClickable(plusColumn));
+		WebDriverWait myWait1 = new WebDriverWait(driver, 20);
+		myWait1.until(ExpectedConditions.elementToBeClickable(feedbackBar));
 		Actions myAction = new Actions(driver);
 		myAction.click(driver.findElement(plusColumn)).build().perform();
 /*		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(plusColumnSelectedButton));
@@ -33,8 +36,9 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 	}
 
 	public void totalCheck() {
+		mySleep(5000);
 		System.out.println("Total amount " + driver.findElement(totalAmountEuro).getText());
-		System.out.println("Total amount " + driver.findElement(totalAmountCent).getText());
+	//	System.out.println("Total amount " + driver.findElement(totalAmountCent).getText());
 		
 	}
 

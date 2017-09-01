@@ -31,6 +31,9 @@ public class TransAviaHomePage extends TransAviaPage{
 	By whoWillBeTravelingAdultsPlus = By.xpath(".//div[@class = 'selectfield adults']/div/div/div/div/button[@class = 'button button-secondary increase']");
 	By whoWillBeTravelingChildenPlus = By.xpath(".//div[@class = 'selectfield children']/div/div/div/div/button[@class = 'button button-secondary increase']");
 	By whoWillBeTravelingSaveButton = By.xpath(".//button[text() = 'Save']");
+	By manageYourBooking = By.xpath("(.//li[@class = 'primary-navigation_item'])[3]");
+	By viewYourBooking = By.xpath(".//span[@class = 'stamp icon-font icon-account']");
+    
 	
 	public TransAviaHomePage(WebDriver driver) {
 		this.driver = driver;
@@ -111,6 +114,12 @@ public class TransAviaHomePage extends TransAviaPage{
 		driver.findElement(whoWillBeTravelingChildenPlus).click();
 		driver.findElement(whoWillBeTravelingSaveButton).click();
 		//mySleep(5000);
+	}
+
+	public TransAviaLoginPage goesToMyBooking() {
+		driver.findElement(manageYourBooking).click();
+		driver.findElement(viewYourBooking).click();
+		return new TransAviaLoginPage(driver);
 	}
 
 

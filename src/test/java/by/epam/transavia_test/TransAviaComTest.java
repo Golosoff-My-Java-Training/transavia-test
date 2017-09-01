@@ -21,21 +21,30 @@ package by.epam.transavia_test;
 import org.testng.annotations.Test;
 
 import by.epam.transavia_test.page.TransAviaBookAFlightPage;
+import by.epam.transavia_test.page.TransAviaBookingOverviewPage;
 import by.epam.transavia_test.page.TransAviaFirstPage;
 import by.epam.transavia_test.page.TransAviaGetMoreOutOfYourTripPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
+import by.epam.transavia_test.page.TransAviaLoginPage;
+import by.epam.transavia_test.page.TransAviaPage;
 
 public class TransAviaComTest extends TestBase{
 	TransAviaFirstPage transAviaFirstPage = null;
 	TransAviaHomePage transAviaHomePage = null;
 	TransAviaBookAFlightPage transAviaBookAFlightPage = null;
 	TransAviaGetMoreOutOfYourTripPage transAviaGetMoreOutOfYourTripPage = null;
+	TransAviaLoginPage transAviaLoginPage = null;
+	TransAviaBookingOverviewPage transAviaBookingOverviewPage = null;
 	
 	protected String selectYourCountry = "United Kingdom";
 	protected String selectBarcelona = "Barcelona";
 	protected String selectParis = "Paris";
 	protected byte adultsNumber = 2;
 	protected byte childrenNumber = 1;
+	protected String bookingNumber = "MF8C9R";
+	protected String lastName = "kukharau";
+	protected String flightDate = "9 June 2016";
+	
 	
 	@Test(enabled = false)
 	public void wereDoYouWantToGoTest(){
@@ -52,7 +61,7 @@ public class TransAviaComTest extends TestBase{
 		
 	}
 	
-	@Test
+	@Test(enabled = false)
 	public void checkForTotal(){
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
@@ -69,4 +78,14 @@ public class TransAviaComTest extends TestBase{
 		
 		
 	}
+	
+	@Test(enabled = true)
+	public void checkForArrivalTime(){
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transAviaLoginPage = transAviaHomePage.goesToMyBooking();
+		transAviaBookingOverviewPage = transAviaLoginPage.login(bookingNumber, lastName, flightDate);
+		
+	}
+	
 }

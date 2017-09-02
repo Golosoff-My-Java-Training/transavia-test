@@ -1,5 +1,6 @@
 package by.epam.transavia_test.page;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -15,6 +16,7 @@ public class TransAviaBookingOverviewPage extends TransAviaPage{
 	public void checkArrivalTime() {
 		mySleep(15000);
 		System.out.println("Arrival time is: " + driver.findElement(arrivalTime).getText());
+		Assert.assertTrue(driver.findElement(arrivalTime).getText() != null);
 		
 	}
 

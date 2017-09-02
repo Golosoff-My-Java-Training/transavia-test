@@ -12,12 +12,18 @@ public class TransAviaBookingOverviewPage extends TransAviaPage{
 	}
 
 	By arrivalTime = By.xpath("(.//p[@class = 'flight-info_value']/em/time)[2]");
+	By toBookingDetails = By.xpath("(.//a[@class = 'icon-left-side icon-animation-next'])[1]");
 
 	public void checkArrivalTime() {
 		mySleep(15000);
 		System.out.println("Arrival time is: " + driver.findElement(arrivalTime).getText());
 		Assert.assertTrue(driver.findElement(arrivalTime).getText() != null);
 		
+	}
+
+	public TransAviaBookingDetailsPage goesToBookingDetails() {
+		driver.findElement(toBookingDetails).click();
+		return new TransAviaBookingDetailsPage(driver);
 	}
 
 }

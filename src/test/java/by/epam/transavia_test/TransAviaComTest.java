@@ -17,10 +17,10 @@ package by.epam.transavia_test;
 7. Найденн хотя бы один рейс в период от 1 до 7 дней
 */
 
-
 import org.testng.annotations.Test;
 
 import by.epam.transavia_test.page.TransAviaBookAFlightPage;
+import by.epam.transavia_test.page.TransAviaBookingDetailsPage;
 import by.epam.transavia_test.page.TransAviaBookingOverviewPage;
 import by.epam.transavia_test.page.TransAviaFirstPage;
 import by.epam.transavia_test.page.TransAviaGetMoreOutOfYourTripPage;
@@ -28,26 +28,28 @@ import by.epam.transavia_test.page.TransAviaHomePage;
 import by.epam.transavia_test.page.TransAviaLoginPage;
 import by.epam.transavia_test.page.TransAviaPage;
 
-public class TransAviaComTest extends TestBase{
+public class TransAviaComTest extends TestBase {
 	TransAviaFirstPage transAviaFirstPage = null;
 	TransAviaHomePage transAviaHomePage = null;
 	TransAviaBookAFlightPage transAviaBookAFlightPage = null;
 	TransAviaGetMoreOutOfYourTripPage transAviaGetMoreOutOfYourTripPage = null;
 	TransAviaLoginPage transAviaLoginPage = null;
 	TransAviaBookingOverviewPage transAviaBookingOverviewPage = null;
-	
+	TransAviaBookingDetailsPage transAviaBookingDetailsPage = null;
+
 	protected String selectYourCountry = "United Kingdom";
 	protected String selectBarcelona = "Barcelona";
+	protected String selectDubai = "Dubai";
+	protected String selectAgadir = "Agadir, Morocco";
 	protected String selectParis = "Paris";
 	protected byte adultsNumber = 2;
 	protected byte childrenNumber = 1;
 	protected String bookingNumber = "MF8C9R";
 	protected String lastName = "kukharau";
 	protected String flightDate = "9 June 2016";
-	
-	
+
 	@Test(enabled = false)
-	public void wereDoYouWantToGoTest(){
+	public void wereDoYouWantToGoTest() {
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
 		transAviaHomePage.chooseFrom();
@@ -57,12 +59,11 @@ public class TransAviaComTest extends TestBase{
 		transAviaHomePage.chooseOneAdult();
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
 		transAviaBookAFlightPage.checkForFlightAvailable();
-		
-		
+
 	}
-	
+
 	@Test(enabled = false)
-	public void checkForTotal(){
+	public void checkForTotal() {
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
 		transAviaHomePage.chooseFrom(selectBarcelona);
@@ -74,19 +75,38 @@ public class TransAviaComTest extends TestBase{
 		transAviaGetMoreOutOfYourTripPage = transAviaBookAFlightPage.pressNextButton();
 		transAviaGetMoreOutOfYourTripPage.plusColumnClick();
 		transAviaGetMoreOutOfYourTripPage.totalCheck();
-		
-		
-		
+
 	}
-	
-	@Test(enabled = true)
-	public void checkForArrivalTime(){
+
+	@Test(enabled = false)
+	public void checkForArrivalTime() {
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
 		transAviaLoginPage = transAviaHomePage.goesToMyBooking();
 		transAviaBookingOverviewPage = transAviaLoginPage.login(bookingNumber, lastName, flightDate);
 		transAviaBookingOverviewPage.checkArrivalTime();
-		
+
 	}
-	
+
+	@Test(enabled = false)
+	public void checkForTotalSumAndPaymentAmountEquals() {
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transAviaLoginPage = transAviaHomePage.goesToMyBooking();
+		transAviaBookingOverviewPage = transAviaLoginPage.login(bookingNumber, lastName, flightDate);
+		transAviaBookingDetailsPage = transAviaBookingOverviewPage.goesToBookingDetails();
+		transAviaBookingDetailsPage.compareTotalSumAndPaymentAmount();
+	}
+
+	@Test(enabled = true)
+	public void checkForNoFlightFromDubaiToAgadir() {
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transAviaHomePage.chooseFrom(selectDubai);
+		transAviaHomePage.chooseToCountry(selectAgadir);
+		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
+		transAviaBookAFlightPage.checkForNoFlightMessage();
+
+	}
+
 }

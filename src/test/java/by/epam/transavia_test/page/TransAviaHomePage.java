@@ -122,7 +122,7 @@ public class TransAviaHomePage extends TransAviaPage{
 		driver.findElement(manageYourBooking).click();
 /*		WebDriverWait myWait1 = new WebDriverWait(driver, 60);
 		myWait1.until(ExpectedConditions.elementToBeClickable(viewYourBooking));*/
-		driver.findElement(viewYourBooking).click();
+	//	driver.findElement(viewYourBooking).click();
 		return new TransAviaLoginPage(driver);
 	}
 

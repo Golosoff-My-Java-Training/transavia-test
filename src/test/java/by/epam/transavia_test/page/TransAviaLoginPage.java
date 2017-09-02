@@ -23,7 +23,10 @@ public class TransAviaLoginPage extends TransAviaPage{
 	public TransAviaBookingOverviewPage login(String bookingNumber, String lastName, String flightDate) {
 		/*WebDriverWait myWait = new WebDriverWait(driver, 20);
 		myWait.until(ExpectedConditions.visibilityOfElementLocated(feedbackBar));*/
+		
 		mySleep(25000);
+		WebDriverWait myWait = new WebDriverWait(driver, 20);
+		myWait.until(ExpectedConditions.elementToBeClickable(buttonViewBooking));
 	//	driver.findElement(inputBookingNumber).click();
 		driver.findElement(inputBookingNumber).sendKeys(bookingNumber);
 		//driver.findElement(inputLastName).click();

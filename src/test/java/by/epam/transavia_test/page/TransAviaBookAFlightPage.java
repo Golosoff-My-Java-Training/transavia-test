@@ -22,6 +22,8 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 	By selectInboundButton = By.xpath("(.//section[@class = 'flight inbound']//span[text() = 'Select'])[1]");
 	By selectedInboundMessage = By.xpath(".//section[@class = 'flight inbound']//div[@class = 'panel flight-result active selected']/button/div[@class = 'actions']/div/span[text() = 'Selected']");
 	By nextButton = By.xpath("(.//button[@name = 'next_button'])[1]");
+	By notificationErrorMessage = By.xpath(".//div[@class='notification-message notification-inline notification-error']/p");
+	private String noFlightFromDubaiToAgadirMessage = "Unfortunately we do not fly from Dubai, United Arab Emirates to Agadir, Morocco. However, we do fly from Dubai, United Arab Emirates to other destinations. Please change your destination and try again.";
 
 	public TransAviaBookAFlightPage(WebDriver driver) {
 		this.driver = driver;
@@ -84,6 +86,12 @@ public class TransAviaBookAFlightPage extends TransAviaPage{
 		System.out.println("clicked nextButton");
 		return new TransAviaGetMoreOutOfYourTripPage(driver);
 //		mySleep(15000);
+	}
+
+	public void checkForNoFlightMessage() {
+		
+		Assert.assertTrue(noFlightFromDubaiToAgadirMessage.equals(driver.findElement(notificationErrorMessage).getText()));
+		
 	}
 
 }

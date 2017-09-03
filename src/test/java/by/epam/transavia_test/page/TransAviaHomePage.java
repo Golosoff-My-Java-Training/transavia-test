@@ -33,7 +33,8 @@ public class TransAviaHomePage extends TransAviaPage{
 	By whoWillBeTravelingSaveButton = By.xpath(".//button[text() = 'Save']");
 	By manageYourBooking = By.xpath("(.//li[@class = 'primary-navigation_item'])[3]");
 	By viewYourBooking = By.xpath(".//span[@class = 'stamp icon-font icon-account']");
-    
+	//By inboundFlightFromDifferentAirport = By.linkText("Inbound flight from a different departure airport"); 
+	By inboundFlightFromDifferentAirport = By.linkText("Add multiple destinations");
 	
 	public TransAviaHomePage(WebDriver driver) {
 		this.driver = driver;
@@ -124,6 +125,13 @@ public class TransAviaHomePage extends TransAviaPage{
 		myWait1.until(ExpectedConditions.elementToBeClickable(viewYourBooking));*/
 	//	driver.findElement(viewYourBooking).click();
 		return new TransAviaLoginPage(driver);
+	}
+
+	public TransAviaFlightsSearchPage goesToDifferentDepartAirport() {
+		WebDriverWait myWait1 = new WebDriverWait(driver, 60);
+		myWait1.until(ExpectedConditions.elementToBeClickable(inboundFlightFromDifferentAirport));
+		driver.findElement(inboundFlightFromDifferentAirport).click();
+		return new TransAviaFlightsSearchPage(driver);
 	}
 
 

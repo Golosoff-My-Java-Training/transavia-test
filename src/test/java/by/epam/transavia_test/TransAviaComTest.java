@@ -23,6 +23,7 @@ import by.epam.transavia_test.page.TransAviaBookAFlightPage;
 import by.epam.transavia_test.page.TransAviaBookingDetailsPage;
 import by.epam.transavia_test.page.TransAviaBookingOverviewPage;
 import by.epam.transavia_test.page.TransAviaFirstPage;
+import by.epam.transavia_test.page.TransAviaFlightsSearchPage;
 import by.epam.transavia_test.page.TransAviaGetMoreOutOfYourTripPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
 import by.epam.transavia_test.page.TransAviaLoginPage;
@@ -36,17 +37,24 @@ public class TransAviaComTest extends TestBase {
 	TransAviaLoginPage transAviaLoginPage = null;
 	TransAviaBookingOverviewPage transAviaBookingOverviewPage = null;
 	TransAviaBookingDetailsPage transAviaBookingDetailsPage = null;
+	TransAviaFlightsSearchPage transAviaFlightsSearchPage = null;
 
 	protected String selectYourCountry = "United Kingdom";
 	protected String selectBarcelona = "Barcelona";
 	protected String selectDubai = "Dubai";
 	protected String selectAgadir = "Agadir, Morocco";
 	protected String selectParis = "Paris";
+	protected String selectBologna = "Bologna, Italy";
+	protected String selectEindhoven = "Eindhoven, Netherlands";
+	protected String selectAmsterdam = "Amsterdam (Schiphol), Netherlands";
+	protected String selectCasablanca = "Casablanca, Morocco";
 	protected byte adultsNumber = 2;
 	protected byte childrenNumber = 1;
 	protected String bookingNumber = "MF8C9R";
 	protected String lastName = "kukharau";
 	protected String flightDate = "9 June 2016";
+	
+	
 
 	@Test(enabled = false)
 	public void wereDoYouWantToGoTest() {
@@ -98,7 +106,7 @@ public class TransAviaComTest extends TestBase {
 		transAviaBookingDetailsPage.compareTotalSumAndPaymentAmount();
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void checkForNoFlightFromDubaiToAgadir() {
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
@@ -107,6 +115,28 @@ public class TransAviaComTest extends TestBase {
 		transAviaBookAFlightPage = transAviaHomePage.pressSearchButton();
 		transAviaBookAFlightPage.checkForNoFlightMessage();
 
+	}
+	@Test(enabled = true)
+	public void checkForMultipleDestinationsBooking() {
+		
+		String outboundDate = "9 Sep 2017";
+		String inboundDate = "11 Sep 2017";
+	/*	String outboundDate = "2 May 2017";
+		String inboundDate = "8 May 2017";*/
+		
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transAviaFlightsSearchPage = transAviaHomePage.goesToDifferentDepartAirport();
+		transAviaFlightsSearchPage.setOutboundFrom(selectBologna);
+		transAviaFlightsSearchPage.setOutboundTo(selectEindhoven);
+		transAviaFlightsSearchPage.setOutboundDate(outboundDate);
+		transAviaFlightsSearchPage.setInboundFrom(selectAmsterdam);
+		transAviaFlightsSearchPage.setInboundTo(selectCasablanca);
+		transAviaFlightsSearchPage.setInboundDate(inboundDate);
+		transAviaFlightsSearchPage.pressSearchButon();
+		transAviaFlightsSearchPage.pressSelectOutboundFlight();
+		transAviaFlightsSearchPage.pressSelectInboundFlight();
+		transAviaFlightsSearchPage.getTotalAmount();
 	}
 
 }

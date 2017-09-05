@@ -22,7 +22,7 @@ public class TransAviaFlightsSearchPage extends TransAviaPage{
 	By feedbackBar = By.xpath(".//div[@class='usabilla_live_button_container']");
 	By searchButton = By.xpath("(.//button[@class='button button-primary'])[2]");
 	By outboundFlightSelectButton = By.xpath("(.//span[text() = 'Select'])[1]");
-	By inboundFlightSelectButton = By.xpath("(.//span[text() = 'Select'])[2]");
+	By inboundFlightSelectButton = By.xpath(".//section[@class = 'flight inbound']//span[text() = 'Select']");
 	By selectedOutboundMessage = By.xpath("(.//div[@class = 'panel flight-result active selected']/button/div[@class = 'actions']/div/span[text() = 'Selected'])[1]");
 	By selectedInboundMessage = By.xpath(".//section[@class = 'flight inbound']//div[@class = 'panel flight-result active selected']/button/div[@class = 'actions']/div/span[text() = 'Selected']");
 	By totalAmount = By.xpath(".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']");
@@ -101,6 +101,7 @@ public class TransAviaFlightsSearchPage extends TransAviaPage{
 
 	public void pressSelectInboundFlight() {
 		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(inboundFlightsH2));
+		
 		driver.findElement(inboundFlightSelectButton).click();
 		WebDriverWait myWait = new WebDriverWait(driver, 60);
 		myWait.until(ExpectedConditions.visibilityOfElementLocated(selectedInboundMessage));
@@ -108,6 +109,7 @@ public class TransAviaFlightsSearchPage extends TransAviaPage{
 
 
 	public void getTotalAmount() {
+		mySleep(15000);
 		String totalAmountString = driver.findElement(totalAmount).getText();
 		System.out.println("Total amount is: " + totalAmountString);
 		Assert.assertTrue(totalAmountString.length() > 1);

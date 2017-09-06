@@ -3,21 +3,34 @@ package by.epam.transavia_test.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 
-	private WebDriver driver;
-	By plusColumn = By.xpath(".//th[@data-column-number = '2']");
-	By plusColumnSelectedButton = By.xpath("(.//div[@class = 'panel_section-button-container']/button[@value = 'B'])[1]");
-	By totalAmountEuro = By.xpath(".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']");
-	By totalAmountCent = By.xpath(".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']/span");
-	By feedbackBar = By.xpath(".//div[@class='usabilla_live_button_container']");
+	@FindBy(xpath = ".//th[@data-column-number = '2']")
+	private WebElement plusColumn;
+	
+	@FindBy(xpath = "(.//div[@class = 'panel_section-button-container']/button[@value = 'B'])[1]")
+	private WebElement plusColumnSelectedButton;
+	
+	@FindBy(xpath = ".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']")
+	private WebElement totalAmountEuro;
+	
+	
+	@FindBy(xpath = ".//div[@class = 'grand-total__price-container']/div/div/div[@class = 'back']/span")
+	private WebElement totalAmountCent;
+	
+	@FindBy(xpath = ".//div[@class='usabilla_live_button_container']")
+	private WebElement feedbackBar;
 	
 	public TransAviaGetMoreOutOfYourTripPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
+		PageFactory.initElements(driver, this);
 	}
 
 	public void plusColumnClick() {
@@ -26,20 +39,12 @@ public class TransAviaGetMoreOutOfYourTripPage extends TransAviaPage{
 		WebDriverWait myWait1 = new WebDriverWait(driver, 20);
 		myWait1.until(ExpectedConditions.elementToBeClickable(feedbackBar));
 		Actions myAction = new Actions(driver);
-		myAction.click(driver.findElement(plusColumn)).build().perform();
-/*		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(plusColumnSelectedButton));
-		WebDriverWait myWait1 = new WebDriverWait(driver, 20);
-		myWait1.until(ExpectedConditions.elementToBeClickable(plusColumnSelectedButton));
-		Actions myAction1 = new Actions(driver);
-		myAction1.click(driver.findElement(plusColumnSelectedButton)).build().perform();
-		mySleep(15000);*/
+		myAction.click(plusColumn).build().perform();
 	}
 
 	public void totalCheck() {
 		mySleep(5000);
-		System.out.println("Total amount " + driver.findElement(totalAmountEuro).getText());
-	//	System.out.println("Total amount " + driver.findElement(totalAmountCent).getText());
-		
+		System.out.println("Total amount " + totalAmountEuro.getText());
 	}
 
 }

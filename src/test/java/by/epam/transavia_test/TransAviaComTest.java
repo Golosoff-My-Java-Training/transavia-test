@@ -28,6 +28,7 @@ import by.epam.transavia_test.page.TransAviaGetMoreOutOfYourTripPage;
 import by.epam.transavia_test.page.TransAviaHomePage;
 import by.epam.transavia_test.page.TransAviaLoginPage;
 import by.epam.transavia_test.page.TransAviaPage;
+import by.epam.transavia_test.page.TransaviaHandLuggagePage;
 
 public class TransAviaComTest extends TestBase {
 	TransAviaFirstPage transAviaFirstPage = null;
@@ -38,6 +39,7 @@ public class TransAviaComTest extends TestBase {
 	TransAviaBookingOverviewPage transAviaBookingOverviewPage = null;
 	TransAviaBookingDetailsPage transAviaBookingDetailsPage = null;
 	TransAviaFlightsSearchPage transAviaFlightsSearchPage = null;
+	TransaviaHandLuggagePage transaviaHandLuggagePage = null;
 
 	protected String selectYourCountry = "United Kingdom";
 	protected String selectBarcelona = "Barcelona";
@@ -116,13 +118,11 @@ public class TransAviaComTest extends TestBase {
 		transAviaBookAFlightPage.checkForNoFlightMessage();
 
 	}
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void checkForMultipleDestinationsBooking() {
 		
 		String outboundDate = "9 Sep 2017";
 		String inboundDate = "11 Sep 2017";
-	/*	String outboundDate = "2 May 2017";
-		String inboundDate = "8 May 2017";*/
 		
 		transAviaFirstPage = new TransAviaFirstPage(driver);
 		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
@@ -137,6 +137,15 @@ public class TransAviaComTest extends TestBase {
 		transAviaFlightsSearchPage.pressSelectOutboundFlight();
 		transAviaFlightsSearchPage.pressSelectInboundFlight();
 		transAviaFlightsSearchPage.getTotalAmount();
+	}
+	
+	@Test(enabled = true)
+	public void checkForCorrectLuggageInstructionVideo() {
+		transAviaFirstPage = new TransAviaFirstPage(driver);
+		transAviaHomePage = transAviaFirstPage.chooseSelectYourCountry(selectYourCountry);
+		transaviaHandLuggagePage = transAviaHomePage.goesToHandLuggagePage();
+		transaviaHandLuggagePage.scrollToVideoSection();
+		
 	}
 
 }

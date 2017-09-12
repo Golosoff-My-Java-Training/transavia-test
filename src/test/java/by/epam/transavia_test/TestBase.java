@@ -22,7 +22,7 @@ public class TestBase {
 	public void setup(){
 		
 //		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-//		System.setProperty("webdriver.gecko.driver", "C://driver//geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "C://driver//geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(TRANSAVIA_COM_URL);

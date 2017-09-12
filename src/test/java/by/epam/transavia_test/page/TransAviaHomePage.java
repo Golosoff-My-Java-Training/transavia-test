@@ -68,8 +68,14 @@ public class TransAviaHomePage extends TransAviaPage{
 	@FindBy(xpath = "(.//li[@class = 'primary-navigation_item'])[3]")
 	private WebElement manageYourBooking;
 	
+	@FindBy(xpath = "(.//li[@class = 'primary-navigation_item'])[4]")
+	private WebElement service;
+	
 	@FindBy(xpath = ".//span[@class = 'stamp icon-font icon-account']")
 	private WebElement viewYourBooking;
+	
+	@FindBy(xpath = "(.//a[@href ='/en-UK/service/hand-luggage/'])[1]")
+	private WebElement handluggage;
 	
 	@FindBy(linkText = "Add multiple destinations")
 	private WebElement inboundFlightFromDifferentAirport;
@@ -163,6 +169,16 @@ public class TransAviaHomePage extends TransAviaPage{
 		myWait1.until(ExpectedConditions.elementToBeClickable(inboundFlightFromDifferentAirport));
 		inboundFlightFromDifferentAirport.click();
 		return new TransAviaFlightsSearchPage(driver);
+	}
+
+	public TransaviaHandLuggagePage goesToHandLuggagePage() {
+		WebDriverWait myWait = new WebDriverWait(driver, 60);
+	//	myWait.until(ExpectedConditions.elementToBeClickable(searchButton));
+		myWait.until(ExpectedConditions.elementToBeClickable(service));
+		mySleep(5000);
+		service.click();
+		handluggage.click();
+		return new TransaviaHandLuggagePage(driver);
 	}
 
 }
